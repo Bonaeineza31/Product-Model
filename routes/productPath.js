@@ -10,7 +10,7 @@ import upload from '../utils/multer.js';
 
 const productRouter = express.Router();
 
-productRouter.post('/', upload.single('upload/Bonae Ineza.png'), createProduct);
+productRouter.post('/', upload.single('productImage'), createProduct);
 
 productRouter.get('/', getAllProducts);
 
