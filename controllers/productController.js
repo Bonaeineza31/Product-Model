@@ -5,12 +5,15 @@ import fs from 'fs';
 // Create a new product
 export const createProduct = async (req, res) => {
   try {
+    // Check if file was uploaded
     if (!req.file) {
       return res.status(400).json({ success: false, message: 'Product image is required' });
     }
 
+    // Upload image to Cloudinary
     const result = await uploadImage(req.file.path);
-   
+    
+    // Create product with image URL
     const { productName, productPrice, productCategory, productDiscount } = req.body;
     const newProduct = new Product({
       productName,
@@ -20,6 +23,7 @@ export const createProduct = async (req, res) => {
       productImage: result.secure_url
     });
 
+    // Save product
     await newProduct.save();
     
     // Delete the file from server after upload

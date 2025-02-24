@@ -12,7 +12,7 @@ cloudinary.v2.config({
 export const uploadImage = async (filePath) => {
   try {
     const result = await cloudinary.v2.uploader.upload(filePath, {
-      folder: 'products'
+      folder: 'uploads'
     });
     return result;
   } catch (error) {
@@ -30,5 +30,6 @@ export const deleteImage = async (publicId) => {
     throw new Error("Failed to delete image");
   }
 };
+
 
 export default cloudinary;
